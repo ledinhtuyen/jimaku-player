@@ -74,43 +74,46 @@
 	}
 </style>
 
-<div class={`subtitles ${$subtitleActionable ? 'actionable' : 'non-actionable'}`} style={`--aspect-ratio: ${aspect}`}>
-	{#if $showSubtitlesOnVideo}
-		{#each subtitlesWithStyling as sub (sub._id)}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<p
-				style={genBaseStyles(sub, $userActive, true)}
-				data-sub-style={sub.style}
-				data-sub-id={sub._id}
-				on:click={() => performSubtitleClickAction([sub.text])}
-				title="click to search this phrase on Jisho.org"
-			>
-				{sub.text}
-			</p>
-		{/each}
-		{#if subtitlesWithoutStyling.length}
-			<div
-				class="subs-without-styles-container {$invertVerticalAlignment ? 'inverted' : 'normal'}"
-				class:active={$userActive}
-			>
-				{#each subtitlesWithoutStyling as sub (sub._id)}
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<p
-						style={genBaseStyles(sub, $userActive, false)}
-						data-sub-style={sub.style}
-						data-sub-id={sub._id}
-						on:click={() => performSubtitleClickAction([sub.text])}
-						title="click to search this phrase on Jisho.org"
-					>
-						{sub.text}
-					</p>
-				{/each}
-			</div>
+<DraggableOverlay>
+	<div class={`subtitles ${$subtitleActionable ? 'actionable' : 'non-actionable'}`} style={`--aspect-ratio: ${aspect}`}>
+		{#if $showSubtitlesOnVideo}
+			{#each subtitlesWithStyling as sub (sub._id)}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<p
+					style={genBaseStyles(sub, $userActive, true)}
+					data-sub-style={sub.style}
+					data-sub-id={sub._id}
+					on:click={() => performSubtitleClickAction([sub.text])}
+					title="click to search this phrase on Jisho.org"
+				>
+					{sub.text}
+				</p>
+			{/each}
+			{#if subtitlesWithoutStyling.length}
+				<div
+					class="subs-without-styles-container {$invertVerticalAlignment ? 'inverted' : 'normal'}"
+					class:active={$userActive}
+				>
+					{#each subtitlesWithoutStyling as sub (sub._id)}
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<p
+							style={genBaseStyles(sub, $userActive, false)}
+							data-sub-style={sub.style}
+							data-sub-id={sub._id}
+							on:click={() => performSubtitleClickAction([sub.text])}
+							title="click to search this phrase on Jisho.org"
+						>
+							{sub.text}
+						</p>
+					{/each}
+				</div>
+			{/if}
 		{/if}
-	{/if}
-</div>
+	</div>
+</DraggableOverlay>
 
 <script lang="ts">
+	import DraggableOverlay from '../DraggableOverlay.svelte';
 	import {
 		joinStyles,
 		fontScale,

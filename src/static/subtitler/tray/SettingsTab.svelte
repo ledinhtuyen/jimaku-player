@@ -27,6 +27,10 @@
 	<label for="show-subs">Show subtitles(<kbd>Hotkey: h</kbd>)</label>
 </div>
 <div>
+	<input id="drag-jimaku" type="checkbox" bind:checked={$subtitleDragEnabled} />
+	<label for="drag-jimaku">Enable drag handle to move Jimaku anywhere on screen</label>
+</div>
+<div>
 	<input id="pause-on-tray" type="checkbox" bind:checked={$pauseWhenTrayOpen} />
 	<label for="pause-on-tray">Pause when tray is open</label>
 </div>
@@ -165,6 +169,7 @@
 		subtitleClickAction,
 		autoCopySubtitles,
 		aspectRatio,
+		subtitleDragEnabled,
 	} from '../stores/settings';
 	import { usesShowBasedSettings, showBasedSettings } from '../stores/by-show-settings';
 	import ExternalLink from '../../local-player/ExternalLink.svelte';

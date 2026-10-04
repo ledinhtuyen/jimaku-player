@@ -10,6 +10,8 @@ const settingsKey = 'settings-store',
 		globalFontScale: 1,
 		subtitleClickAction: 'jisho',
 		aspectRatio: 'auto',
+		subtitleDragEnabled: false,
+		subtitleOffset: { x: 0, y: 0 },
 	},
 	//stores are interacted with, which updates 'state' which will get persisted with GM_setValue
 	state = Object.assign({}, defaultSettings, GM_getValue(settingsKey, {})),
@@ -33,3 +35,5 @@ export const autoCopySubtitles = stores.autoCopySubtitles;
 export const globalFontScale = stores.globalFontScale;
 export const subtitleClickAction = stores.subtitleClickAction;
 export const aspectRatio = stores.aspectRatio;
+export const subtitleDragEnabled = stores.subtitleDragEnabled;
+export const subtitleOffset = stores.subtitleOffset;
